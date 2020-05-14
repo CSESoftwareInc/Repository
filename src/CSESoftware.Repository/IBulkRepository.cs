@@ -7,7 +7,7 @@ namespace CSESoftware.Repository
 {
     public interface IBulkRepository
     {
-        IEnumerable<int> Create<TEntity>(IList<TEntity> data)
+        IEnumerable<int> Create<TEntity>(IEnumerable<TEntity> data)
             where TEntity : class, IBaseEntity;
     }
 }

@@ -1,5 +1,4 @@
-﻿using CSESoftware.Core.Entity;
-using System;
+﻿using System;
 
 namespace CSESoftware.Repository.Models
 {

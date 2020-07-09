@@ -7,7 +7,7 @@ using CSESoftware.Core.Entity;
 
 namespace CSESoftware.Repository.Builder
 {
-    public class QueryBuilder<TEntity> where TEntity : class, IBaseEntity
+    public class QueryBuilder<TEntity> where TEntity : class, IEntity
     {
         private readonly IQuery<TEntity> _entity;
 
@@ -41,7 +41,7 @@ namespace CSESoftware.Repository.Builder
         {
             if (includes == null) return this;
 
-            _entity.Include = includes.ToList();
+            _entity.Include.AddRange(includes);
             return this;
         }
 

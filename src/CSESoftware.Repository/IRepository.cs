@@ -17,7 +17,7 @@ namespace CSESoftware.Repository
         void Update<TEntity>(TEntity entity)
             where TEntity : class, IEntity;
 
-        void Update<TEntity>(IEnumerable<TEntity> entities)
+        void Update<TEntity>(List<TEntity> entities)
             where TEntity : class, IEntity;
 
         void Delete<TEntity>(object id)
@@ -26,7 +26,7 @@ namespace CSESoftware.Repository
         void Delete<TEntity>(TEntity entity)
             where TEntity : class, IEntity;
 
-        void Delete<TEntity>(IEnumerable<TEntity> entities)
+        void Delete<TEntity>(List<TEntity> entities)
             where TEntity : class, IEntity;
 
         void Delete<TEntity>(Expression<Func<TEntity, bool>> filter)

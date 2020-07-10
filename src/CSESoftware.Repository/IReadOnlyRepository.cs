@@ -8,10 +8,10 @@ namespace CSESoftware.Repository
 {
     public interface IReadOnlyRepository {
 
-        Task<IEnumerable<TEntity>> GetAllAsync<TEntity>(IQuery<TEntity> filter)
+        Task<List<TEntity>> GetAllAsync<TEntity>(IQuery<TEntity> filter)
             where TEntity : class, IEntity;
 
-        Task<IEnumerable<TEntity>> GetAllAsync<TEntity>(Expression<Func<TEntity, bool>> filter = null)
+        Task<List<TEntity>> GetAllAsync<TEntity>(Expression<Func<TEntity, bool>> filter = null)
             where TEntity : class, IEntity;
 
         Task<TEntity> GetFirstAsync<TEntity>(IQuery<TEntity> filter)
@@ -32,7 +32,7 @@ namespace CSESoftware.Repository
         Task<bool> GetExistsAsync<TEntity>(Expression<Func<TEntity, bool>> filter = null)
             where TEntity : class, IEntity;
 
-        Task<IEnumerable<object>> GetAllWithSelectAsync<TEntity>(IQuery<TEntity> filter)
+        Task<List<TOut>> GetAllWithSelectAsync<TEntity, TOut>(IQuery<TEntity> filter = null)
             where TEntity : class, IEntity;
     }
 }

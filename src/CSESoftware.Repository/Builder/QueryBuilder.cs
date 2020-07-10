@@ -9,7 +9,7 @@ namespace CSESoftware.Repository.Builder
 {
     public class QueryBuilder<TEntity> where TEntity : class, IEntity
     {
-        private readonly IQuery<TEntity> _entity;
+        internal readonly IQuery<TEntity> _entity;
 
         public QueryBuilder()
         {

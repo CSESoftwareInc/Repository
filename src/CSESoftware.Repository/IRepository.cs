@@ -20,8 +20,8 @@ namespace CSESoftware.Repository
         void Update<TEntity>(List<TEntity> entities)
             where TEntity : class, IEntity;
 
-        void Delete<TEntity>(object id)
-            where TEntity : class, IEntityWithId;
+        void Delete<TEntity, T>(T id)
+            where TEntity : class, IEntityWithId<T>;
 
         void Delete<TEntity>(TEntity entity)
             where TEntity : class, IEntity;

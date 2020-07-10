@@ -11,7 +11,7 @@ namespace CSESoftware.Repository
         void Create<TEntity>(TEntity entity)
             where TEntity : class, IEntity;
 
-        void Create<TEntity>(IEnumerable<TEntity> entities)
+        void Create<TEntity>(List<TEntity> entities)
             where TEntity : class, IEntity;
 
         void Update<TEntity>(TEntity entity)

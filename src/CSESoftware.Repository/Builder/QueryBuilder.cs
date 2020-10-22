@@ -53,10 +53,12 @@ namespace CSESoftware.Repository.Builder
             return this;
         }
 
-        public QueryBuilder<TEntity> Select(Expression<Func<TEntity, object>> select)
+        public IQueryWithSelect<TEntity, TOut> SelectAndBuild<TOut>(Expression<Func<TEntity, TOut>> select)
         {
-            _entity.Select = select;
-            return this;
+            return new QueryWithSelect<TEntity, TOut>(_entity)
+            {
+                Select = select
+            };
         }
 
         public QueryBuilder<TEntity> Skip(int? skip)

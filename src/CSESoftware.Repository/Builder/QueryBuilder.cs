@@ -70,7 +70,7 @@ namespace CSESoftware.Repository.Builder
             return this;
         }
 
-        public QueryBuilder<TEntity> WithThisCancellationTokenToken(CancellationToken token)
+        public QueryBuilder<TEntity> WithThisCancellationToken(CancellationToken token)
         {
             _entity.CancellationToken = token;
             return this;

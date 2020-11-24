@@ -12,7 +12,6 @@ namespace CSESoftware.Repository
         Expression<Func<TEntity, bool>> Predicate { get; set; }
         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> OrderBy { get; set; }
         List<Expression<Func<TEntity, object>>> Include { get; set; }
-        Expression<Func<TEntity, object>> Select { get; set; }
         int? Skip { get; set; }
         int? Take { get; set; }
         CancellationToken CancellationToken { get; set; }

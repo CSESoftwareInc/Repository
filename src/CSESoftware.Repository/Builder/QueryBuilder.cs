@@ -53,10 +53,9 @@ namespace CSESoftware.Repository.Builder
             return this;
         }
 
-        public QueryBuilder<TEntity> Select(Expression<Func<TEntity, object>> select)
+        public SelectQueryBuilder<TEntity, TOut> Select<TOut>(Expression<Func<TEntity, TOut>> select)
         {
-            _entity.Select = select;
-            return this;
+            return new SelectQueryBuilder<TEntity, TOut>(_entity, select);
         }
 
         public QueryBuilder<TEntity> Skip(int? skip)
@@ -71,7 +70,7 @@ namespace CSESoftware.Repository.Builder
             return this;
         }
 
-        public QueryBuilder<TEntity> WithThisCancellationTokenToken(CancellationToken token)
+        public QueryBuilder<TEntity> WithThisCancellationToken(CancellationToken token)
         {
             _entity.CancellationToken = token;
             return this;

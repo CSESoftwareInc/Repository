@@ -91,7 +91,7 @@ public async Task SpecifyReturn()
 		.Select(x => x.Name)
 		.Build();
 
-	var nameOfInactiveUsers = await _repository.GetAllAsync(nameOfInactiveUsersQuery);
+	var nameOfInactiveUsers = await _repository.GetAllWithSelectAsync(nameOfInactiveUsersQuery);
 }
 ```
 Queries can be saved through concrete classes and reused later:
@@ -106,7 +106,7 @@ public class UserQueries
 			.Build();
 	}
 
-	public IQuery<User> GetAllInactiveUsers()
+	public IQuery<User> GetAllInactiveUsersWithDepartment()
 	{
 		return new QueryBuilder<User>()
 			.Where(x => x.IsActive == false)
@@ -117,4 +117,4 @@ public class UserQueries
 ```
 ---
 
-CSE Software Inc. is a privately held company founded in 1990. CSE develops software, AR/VR, simulation, mobile, and web technology solutions. The company also offers live, 24x7, global help desk services in 110 languages. All CSE teams are U.S. based with experience in multiple industries, including government, military, healthcare, construction, agriculture, mining, and more. CSE Software is a certified women-owned small business. Visit us online at [csesoftware.com](csesoftware.com).
+CSE Software Inc. is a privately held company founded in 1990. CSE develops software, AR/VR, simulation, mobile, and web technology solutions. The company also offers live, 24x7, global help desk services in 110 languages. All CSE teams are U.S. based with experience in multiple industries, including government, military, healthcare, construction, agriculture, mining, and more. CSE Software is a certified women-owned small business. Visit us online at [csesoftware.com](https://www.csesoftware.com).

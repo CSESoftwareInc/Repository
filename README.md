@@ -75,7 +75,8 @@ Ordering query results:
 public async Task Order()
 {
 	var orderUsersQuery = new QueryBuilder<User>()
-		.OrderBy(x => x.OrderBy(y => y.Name).ThenByDescending(y => y.AddressOne))
+		.OrderBy(x => x.Name)
+		.ThenByDescending(x => x.AddressOne)
 		.Build();
 
 	var orderedUsers = await _repository.GetAllAsync(orderUsersQuery);

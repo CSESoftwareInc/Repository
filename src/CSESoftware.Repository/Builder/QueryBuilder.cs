@@ -1,39 +1,88 @@
-﻿using System;
+﻿using CSESoftware.Core.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
-using CSESoftware.Core.Entity;
 
 namespace CSESoftware.Repository.Builder
 {
     public class QueryBuilder<TEntity> where TEntity : class, IEntity
     {
-        internal readonly IQuery<TEntity> _entity;
+        protected internal readonly IQuery<TEntity> Entity;
+        internal List<Ordering<TEntity>> Ordering;
+
 
         public QueryBuilder()
         {
-            _entity = new Query<TEntity>
+            Entity = new Query<TEntity>
             {
                 Include = new List<Expression<Func<TEntity, object>>>(),
                 CancellationToken = CancellationToken.None
             };
+
+            Ordering = new List<Ordering<TEntity>>();
         }
 
         public QueryBuilder(IQuery<TEntity> filter)
         {
-            _entity = filter;
+            Entity = filter;
         }
 
         public QueryBuilder<TEntity> Where(Expression<Func<TEntity, bool>> expression)
         {
-            _entity.Predicate = expression;
+            Entity.Predicate = expression;
             return this;
         }
 
         public QueryBuilder<TEntity> OrderBy(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> order)
         {
-            _entity.OrderBy = order;
+            Entity.OrderBy = order;
+            return this;
+        }
+
+        public QueryBuilder<TEntity> OrderBy(Expression<Func<TEntity, object>> orderBy)
+        {
+            Ordering = new List<Ordering<TEntity>>()
+            {
+                new Ordering<TEntity>
+                {
+                    OrderBy = orderBy,
+                    Descending = false
+                }
+            };
+            return this;
+        }
+
+        public QueryBuilder<TEntity> OrderByDescending(Expression<Func<TEntity, object>> orderBy)
+        {
+            Ordering = new List<Ordering<TEntity>>()
+            {
+                new Ordering<TEntity>
+                {
+                    OrderBy = orderBy,
+                    Descending = true
+                }
+            }; return this;
+        }
+
+        public QueryBuilder<TEntity> ThenBy(Expression<Func<TEntity, object>> thenBy)
+        {
+            Ordering.Add(new Ordering<TEntity>
+            {
+                OrderBy = thenBy,
+                Descending = false
+            });
+            return this;
+        }
+
+        public QueryBuilder<TEntity> ThenByDescending(Expression<Func<TEntity, object>> thenBy)
+        {
+            Ordering.Add(new Ordering<TEntity>
+            {
+                OrderBy = thenBy,
+                Descending = true
+            });
             return this;
         }
 
@@ -41,7 +90,7 @@ namespace CSESoftware.Repository.Builder
         {
             if (includes == null) return this;
 
-            _entity.Include.AddRange(includes);
+            Entity.Include.AddRange(includes);
             return this;
         }
 
@@ -49,36 +98,57 @@ namespace CSESoftware.Repository.Builder
         {
             if (include == null) return this;
 
-            _entity.Include.Add(include);
+            Entity.Include.Add(include);
             return this;
         }
 
         public SelectQueryBuilder<TEntity, TOut> Select<TOut>(Expression<Func<TEntity, TOut>> select)
         {
-            return new SelectQueryBuilder<TEntity, TOut>(_entity, select);
+            return new SelectQueryBuilder<TEntity, TOut>(Entity, select);
         }
 
         public QueryBuilder<TEntity> Skip(int? skip)
         {
-            _entity.Skip = skip;
+            Entity.Skip = skip;
             return this;
         }
 
         public QueryBuilder<TEntity> Take(int? take)
         {
-            _entity.Take = take;
+            Entity.Take = take;
             return this;
         }
 
         public QueryBuilder<TEntity> WithThisCancellationToken(CancellationToken token)
         {
-            _entity.CancellationToken = token;
+            Entity.CancellationToken = token;
             return this;
         }
 
         public IQuery<TEntity> Build()
         {
-            return _entity;
+            if (!Ordering.Any()) return Entity;
+
+            Entity.OrderBy = x =>
+            {
+                var orderBy = Ordering.First();
+                Ordering.Remove(orderBy);
+
+                var ordering = orderBy.Descending
+                    ? x.OrderByDescending(orderBy.OrderBy)
+                    : x.OrderBy(orderBy.OrderBy);
+
+                foreach (var thenBy in Ordering)
+                {
+                    ordering = thenBy.Descending
+                        ? ordering.ThenByDescending(thenBy.OrderBy)
+                        : ordering.ThenBy(thenBy.OrderBy);
+                }
+
+                return ordering;
+            };
+
+            return Entity;
         }
     }
 }

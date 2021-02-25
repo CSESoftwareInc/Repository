@@ -7,7 +7,7 @@ namespace CSESoftware.Repository.Builder
         public static QueryBuilder<TEntity> WithId<TEntity, T>(this QueryBuilder<TEntity> queryBuilder,  T id)
             where TEntity : class, IEntityWithId<T>
         {
-            queryBuilder._entity.Predicate = x => x.Id.Equals(id);
+            queryBuilder.Entity.Predicate = x => x.Id.Equals(id);
             return queryBuilder;
         }
     }

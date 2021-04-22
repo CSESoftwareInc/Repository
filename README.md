@@ -42,19 +42,6 @@ public async Task Query()
 	var inActiveUsers = await repository.GetAllAsync(inActiveUsersQuery);
 }
 ```
-Query with a join to another entity:
-
-```c#
-public async Task Join()
-{
-	var inActiveUsersWithDepartmentsQuery = new QueryBuilder<User>()
-		.Where(x => x.IsActive == false)
-		.Include(x => x.Department)
-		.Build();
-
-	var inActiveUsersWithDepartments = await _repository.GetAllAsync(inActiveUsersWithDepartmentsQuery);
-}
-```
 Pagination with skip/take:
 
 ```c#
@@ -111,7 +98,7 @@ public class UserQueries
 	{
 		return new QueryBuilder<User>()
 			.Where(x => x.IsActive == false)
-			.Include(x => x.Department)
+			.OrderBy(x => x.Department)
 			.Build();
 	}
 }

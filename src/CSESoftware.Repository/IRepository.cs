@@ -1,37 +1,34 @@
-﻿using System;
+﻿using CSESoftware.Core.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
-using CSESoftware.Core.Entity;
 
 namespace CSESoftware.Repository
 {
     public interface IRepository : IReadOnlyRepository
     {
-        void Create<TEntity>(TEntity entity)
-            where TEntity : class, IEntity;
+        void Create<T>(T entity)
+            where T : class;
 
-        void Create<TEntity>(List<TEntity> entities)
-            where TEntity : class, IEntity;
+        void Create<T>(List<T> entities)
+            where T : class;
 
-        void Update<TEntity>(TEntity entity)
-            where TEntity : class, IEntity;
+        void Update<T>(T entity)
+            where T : class;
 
-        void Update<TEntity>(List<TEntity> entities)
-            where TEntity : class, IEntity;
+        void Update<T>(List<T> entities)
+            where T : class;
 
-        void Delete<TEntity, T>(T id)
-            where TEntity : class, IEntityWithId<T>;
+        void Delete<T, TId>(TId id)
+            where T : class, IEntityWithId<TId>;
 
-        void Delete<TEntity>(TEntity entity)
-            where TEntity : class, IEntity;
+        void Delete<T>(T entity)
+            where T : class;
 
-        void Delete<TEntity>(List<TEntity> entities)
-            where TEntity : class, IEntity;
+        void Delete<T>(List<T> entities)
+            where T : class;
 
-        void Delete<TEntity>(Expression<Func<TEntity, bool>> filter)
-            where TEntity : class, IEntity;
-
-        Task SaveAsync();
+        void Delete<T>(Expression<Func<T, bool>> filter)
+            where T : class;
     }
 }

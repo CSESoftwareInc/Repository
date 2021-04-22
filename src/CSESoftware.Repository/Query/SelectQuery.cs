@@ -13,7 +13,7 @@ namespace CSESoftware.Repository.Query
         public SelectQuery(IQuery<T> query)
         {
             Predicate = query.Predicate;
-            OrderBy = query.OrderBy;
+            Order = query.Order;
             Include = query.Include;
             Skip = query.Skip;
             Take = query.Take;

@@ -1,5 +1,4 @@
 ﻿using CSESoftware.Core.Entity;
-using CSESoftware.Repository.Query.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,63 +20,6 @@ namespace CSESoftware.Repository.Query.Extensions
             where T : class, IEntityWithId<TId>
         {
             query.Predicate = x => x.Id.Equals(id);
-            return query;
-        }
-
-        public static IQuery<T> OrderBy<T>(this IQuery<T> query, Func<IQueryable<T>, IOrderedQueryable<T>> order)
-            where T : class
-        {
-            query.OrderBy = order;
-            return query;
-        }
-
-        public static Query<T> OrderBy<T>(this Query<T> query, Expression<Func<T, object>> orderBy)
-            where T : class
-        {
-            query.Ordering = new List<Ordering<T>>
-            {
-                new Ordering<T>
-                {
-                    OrderBy = orderBy,
-                    Descending = false
-                }
-            };
-            return query;
-        }
-
-        public static Query<T> OrderByDescending<T>(this Query<T> query, Expression<Func<T, object>> orderBy)
-            where T : class
-        {
-            query.Ordering = new List<Ordering<T>>
-            {
-                new Ordering<T>
-                {
-                    OrderBy = orderBy,
-                    Descending = true
-                }
-            };
-            return query;
-        }
-
-        public static Query<T> ThenBy<T>(this Query<T> query, Expression<Func<T, object>> thenBy)
-            where T : class
-        {
-            query.Ordering.Add(new Ordering<T>
-            {
-                OrderBy = thenBy,
-                Descending = false
-            });
-            return query;
-        }
-
-        public static Query<T> ThenByDescending<T>(this Query<T> query, Expression<Func<T, object>> thenBy)
-            where T : class
-        {
-            query.Ordering.Add(new Ordering<T>
-            {
-                OrderBy = thenBy,
-                Descending = true
-            });
             return query;
         }
 

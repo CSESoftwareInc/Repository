@@ -24,7 +24,7 @@ namespace CSESoftware.Repository.Query
 
         internal List<Ordering<T>> Ordering;
         private Func<IQueryable<T>, IOrderedQueryable<T>> _orderBy;
-        public Func<IQueryable<T>, IOrderedQueryable<T>> OrderBy {
+        public Func<IQueryable<T>, IOrderedQueryable<T>> Order {
             get
             {
                 if (_orderBy != null) return _orderBy;

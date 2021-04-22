@@ -2,33 +2,34 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace CSESoftware.Repository
 {
     public interface IRepository : IReadOnlyRepository
     {
-        void Create<T>(T entity)
+        Task CreateAsync<T>(T entity)
             where T : class;
 
-        void Create<T>(List<T> entities)
+        Task CreateAsync<T>(List<T> entities)
             where T : class;
 
-        void Update<T>(T entity)
+        Task UpdateAsync<T>(T entity)
             where T : class;
 
-        void Update<T>(List<T> entities)
+        Task UpdateAsync<T>(List<T> entities)
             where T : class;
 
-        void Delete<T, TId>(TId id)
+        Task DeleteAsync<T, TId>(TId id)
             where T : class, IEntityWithId<TId>;
 
-        void Delete<T>(T entity)
+        Task DeleteAsync<T>(T entity)
             where T : class;
 
-        void Delete<T>(List<T> entities)
+        Task DeleteAsync<T>(List<T> entities)
             where T : class;
 
-        void Delete<T>(Expression<Func<T, bool>> filter)
+        Task DeleteAsync<T>(Expression<Func<T, bool>> filter)
             where T : class;
     }
 }

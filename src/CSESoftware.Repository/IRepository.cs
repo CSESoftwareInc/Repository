@@ -8,28 +8,30 @@ namespace CSESoftware.Repository
 {
     public interface IRepository : IReadOnlyRepository
     {
-        Task CreateAsync<T>(T entity)
+        void Create<T>(T entity)
             where T : class;
 
-        Task CreateAsync<T>(List<T> entities)
+        void Create<T>(List<T> entities)
             where T : class;
 
-        Task UpdateAsync<T>(T entity)
+        void Update<T>(T entity)
             where T : class;
 
-        Task UpdateAsync<T>(List<T> entities)
+        void Update<T>(List<T> entities)
             where T : class;
 
-        Task DeleteAsync<T, TId>(TId id)
+        void Delete<T, TId>(TId id)
             where T : class, IEntityWithId<TId>;
 
-        Task DeleteAsync<T>(T entity)
+        void Delete<T>(T entity)
             where T : class;
 
-        Task DeleteAsync<T>(List<T> entities)
+        void Delete<T>(List<T> entities)
             where T : class;
 
-        Task DeleteAsync<T>(Expression<Func<T, bool>> filter)
+        void Delete<T>(Expression<Func<T, bool>> filter)
             where T : class;
+
+        Task SaveAsync();
     }
 }

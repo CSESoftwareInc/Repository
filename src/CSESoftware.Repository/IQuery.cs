@@ -7,7 +7,7 @@ using CSESoftware.Core.Entity;
 
 namespace CSESoftware.Repository
 {
-    public interface IQuery<TEntity> where TEntity : class, IBaseEntity
+    public interface IQuery<TEntity> where TEntity : class
     {
         Expression<Func<TEntity, bool>> Predicate { get; set; }
         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> OrderBy { get; set; }

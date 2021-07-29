@@ -7,7 +7,7 @@ using CSESoftware.Core.Entity;
 
 namespace CSESoftware.Repository.Builder
 {
-    public class QueryBuilder<TEntity> where TEntity : class, IBaseEntity
+    public class QueryBuilder<TEntity> where TEntity : class
     {
         private readonly IQuery<TEntity> _entity;
 

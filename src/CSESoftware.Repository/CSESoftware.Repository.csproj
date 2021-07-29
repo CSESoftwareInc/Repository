@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>CSE Software, Inc.</Authors>
     <Copyright>2021 CSE Software, Inc.</Copyright>
-    <Version>3.0.0-alpha6</Version>
+    <Version>3.0.0-beta2</Version>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <Description>A generic repository pattern.</Description>
     <PackageIcon>packageIcon.png</PackageIcon>
@@ -18,10 +18,6 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="CSESoftware.Core" Version="2.0.0" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Include="packageIcon.png">

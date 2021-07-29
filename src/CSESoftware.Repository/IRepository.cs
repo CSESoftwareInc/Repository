@@ -1,5 +1,4 @@
-﻿using CSESoftware.Core.Entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -19,9 +18,6 @@ namespace CSESoftware.Repository
 
         void Update<T>(List<T> entities)
             where T : class;
-
-        void Delete<T, TId>(TId id)
-            where T : class, IEntityWithId<TId>;
 
         void Delete<T>(T entity)
             where T : class;

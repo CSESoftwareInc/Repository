@@ -1,5 +1,4 @@
-﻿using CSESoftware.Core.Entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -13,13 +12,6 @@ namespace CSESoftware.Repository.Query.Extensions
             where T : class
         {
             query.Predicate = expression;
-            return query;
-        }
-
-        public static IQuery<T> WithId<T, TId>(this IQuery<T> query, TId id)
-            where T : class, IEntityWithId<TId>
-        {
-            query.Predicate = x => x.Id.Equals(id);
             return query;
         }
 

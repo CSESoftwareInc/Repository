@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 using CSESoftware.Core.Entity;
 
@@ -32,6 +33,6 @@ namespace CSESoftware.Repository
         void Delete<TEntity>(Expression<Func<TEntity, bool>> filter)
             where TEntity : class, IEntity;
 
-        Task SaveAsync();
+        Task SaveAsync(CancellationToken? cancellationToken = null);
     }
 }

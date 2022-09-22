@@ -6,8 +6,8 @@
     <AssemblyName>CSESoftware.Repository</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>CSE Software, Inc.</Authors>
-    <Copyright>2021 CSE Software, Inc.</Copyright>
-    <Version>2.1.1</Version>
+    <Copyright>2022 CSE Software, Inc.</Copyright>
+    <Version>2.2.0</Version>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <Description>A generic repository pattern.</Description>
     <PackageIcon>packageIcon.png</PackageIcon>

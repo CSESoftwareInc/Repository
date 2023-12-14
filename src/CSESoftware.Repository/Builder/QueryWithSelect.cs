@@ -1,10 +1,10 @@
-﻿using System;
+﻿using CSESoftware.Core.Entity;
+using System;
 using System.Linq.Expressions;
-using CSESoftware.Core.Entity;
 
 namespace CSESoftware.Repository.Builder
 {
-    public class QueryWithSelect<TEntity, TOut> :  Query<TEntity>, IQueryWithSelect<TEntity, TOut> where TEntity : class, IEntity
+    public class QueryWithSelect<TEntity, TOut> : Query<TEntity>, IQueryWithSelect<TEntity, TOut> where TEntity : class, IEntity
     {
         public QueryWithSelect(IQuery<TEntity> query)
         {
@@ -17,5 +17,6 @@ namespace CSESoftware.Repository.Builder
         }
 
         public Expression<Func<TEntity, TOut>> Select { get; set; }
+        public bool Distinct { get; set; }
     }
 }

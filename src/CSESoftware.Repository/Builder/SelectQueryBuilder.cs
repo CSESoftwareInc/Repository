@@ -21,6 +21,12 @@ namespace CSESoftware.Repository.Builder
             };
         }
 
+        public SelectQueryBuilder<TEntity, TOut> Distinct()
+        {
+            Entity.Distinct = true;
+            return this;
+        }
+
         public IQueryWithSelect<TEntity, TOut> Build()
         {
             return Entity;

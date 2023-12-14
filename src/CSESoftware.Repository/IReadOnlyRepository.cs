@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CSESoftware.Repository
 {
-    public interface IReadOnlyRepository {
+    public interface IReadOnlyRepository
+    {
         Task<List<TEntity>> GetAllAsync<TEntity>(IQuery<TEntity> filter)
             where TEntity : class, IEntity;
 
@@ -53,6 +54,9 @@ namespace CSESoftware.Repository
             where TEntity : class, IEntity;
 
         TOut GetFirstWithSelect<TEntity, TOut>(IQueryWithSelect<TEntity, TOut> filter = null)
+            where TEntity : class, IEntity;
+
+        Task<int> GetCountWithSelectAsync<TEntity, TOut>(IQueryWithSelect<TEntity, TOut> filter = null)
             where TEntity : class, IEntity;
     }
 }

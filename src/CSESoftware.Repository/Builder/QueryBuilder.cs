@@ -12,7 +12,6 @@ namespace CSESoftware.Repository.Builder
         protected internal readonly IQuery<TEntity> Entity;
         internal List<Ordering<TEntity>> Ordering;
 
-
         public QueryBuilder()
         {
             Entity = new Query<TEntity>
@@ -32,6 +31,12 @@ namespace CSESoftware.Repository.Builder
         public QueryBuilder<TEntity> Where(Expression<Func<TEntity, bool>> expression)
         {
             Entity.Predicate = expression;
+            return this;
+        }
+
+        public QueryBuilder<TEntity> WhereAlso(Expression<Func<TEntity, bool>> expression)
+        {
+            Entity.Predicate = Entity.Predicate.AndAlso(expression);
             return this;
         }
 

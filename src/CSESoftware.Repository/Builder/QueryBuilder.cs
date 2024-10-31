@@ -40,6 +40,12 @@ namespace CSESoftware.Repository.Builder
             return this;
         }
 
+        public QueryBuilder<TEntity> WhereOrAlso(Expression<Func<TEntity, bool>> expression)
+        {
+            Entity.Predicate = Entity.Predicate.OrAlso(expression);
+            return this;
+        }
+
         public QueryBuilder<TEntity> OrderBy(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> order)
         {
             Entity.OrderBy = order;

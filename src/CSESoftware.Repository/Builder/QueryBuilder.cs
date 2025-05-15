@@ -109,7 +109,7 @@ namespace CSESoftware.Repository.Builder
 
         public SelectQueryBuilder<TEntity, TOut> Select<TOut>(Expression<Func<TEntity, TOut>> select)
         {
-            return new SelectQueryBuilder<TEntity, TOut>(Entity, select);
+            return new SelectQueryBuilder<TEntity, TOut>(Build(), select);
         }
 
         public QueryBuilder<TEntity> Skip(int? skip)
